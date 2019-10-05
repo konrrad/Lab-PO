@@ -3,69 +3,29 @@ package agh.cs.lab1;//jak w instrukcji
 
 import static  java.lang.System.out;    //można tak i wtedy nie trzeba pisać System.out.println();
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class World {
 
     public static void main(String[] args) {
-        System.out.print("Start");
+        System.out.print("Start\n");
         Direction[] directions=new Direction[args.length];
-        stringToEnum(directions,args);
-        run(directions);
-        out.print("\nStop\n");
+        run(stringToEnum(directions,args));
+        out.print("Stop\n");
     }
-    public static void run(Direction[] directions)
+    public static void run(List<Direction> directions)
     {
 
-        for(int i=0;i<directions.length;i++)
-        {
-            if(directions[i]==Direction.FORWARD)
-            {
-                out.print("\nZwierzak idzie do przodu");
-            }
-            else if(directions[i]==Direction.LEFT)
-            {
-                out.print("\nZwierzak idzie w lewo");
-            }
-            else if(directions[i]==Direction.RIGHT)
-            {
-                out.print("\nZwierzak idzie w prawo");
-            }
-            else if(directions[i]==Direction.BACKWARD)
-            {
-                out.print("\nZwierzak idzie do tyłu");
-            }
-            else
-            {
-            	continue;
-            }
-            if(i!=directions.length-1)
-            {
-                out.print(",");
-            }
-
-
-        }
-
+        directions.stream().forEach(d->{if(d!=null) {d.write();}});
     }
-    public static void stringToEnum(Direction[] directions,String[] args)
+    public static List<Direction> stringToEnum(Direction[] directions,String[] args)
     {
-    	for(int i=0;i<args.length;i++)
-        {
-            if(args[i].equals("f"))
-            {
-            	directions[i]=Direction.FORWARD;
-            }
-            else if(args[i].equals("l"))
-            {
-                directions[i]=Direction.LEFT;
-            }
-            else if(args[i].equals("r"))
-            {
-                directions[i]=Direction.RIGHT;
-            }
-            else if(args[i].equals("b"))
-            {
-                directions[i]=Direction.BACKWARD;
-            }
-        }
+    	
+    	return Arrays.stream(args).map(element->{
+    		return Direction.convert(element);})
+    			.collect(Collectors.toList());
     }
+   
 }
