@@ -7,9 +7,7 @@ public class World {
 
     public static void main(String[] args) {
         System.out.print("Start");
-        Direction[] directions=new Direction[args.length];
-        stringToEnum(directions,args);
-        run(directions);
+        run(stringToEnum(args));
         out.print("\nStop\n");
     }
     public static void run(Direction[] directions)
@@ -37,17 +35,12 @@ public class World {
             {
             	continue;
             }
-            if(i!=directions.length-1)
-            {
-                out.print(",");
-            }
-
-
         }
 
     }
-    public static void stringToEnum(Direction[] directions,String[] args)
+    public static Direction[] stringToEnum(String[] args)
     {
+    	Direction[] directions=new Direction[args.length];
     	for(int i=0;i<args.length;i++)
         {
             if(args[i].equals("f"))
@@ -67,5 +60,6 @@ public class World {
                 directions[i]=Direction.BACKWARD;
             }
         }
+    	return directions;
     }
 }
