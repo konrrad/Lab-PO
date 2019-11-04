@@ -7,8 +7,8 @@ public class Animal {
     private IWorldMap map;
 
     public Animal() {
-        orientation = MapDirection.NORTH;
-        position = new Vector2d(2, 2);
+        this.orientation = MapDirection.NORTH;
+        this.position = new Vector2d(2, 2);
         this.map = null;
     }
 

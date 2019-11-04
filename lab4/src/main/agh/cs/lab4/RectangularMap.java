@@ -63,29 +63,7 @@ public class RectangularMap implements IWorldMap {
 
     @Override
     public void run(MoveDirection[] directions) {
-        //zakładam, że w tablicy directions jest tyle pozycji ile zwierząt na mapie
-        /*int i=0;
-        ArrayList<Vector2d> toDelete=new ArrayList<>();
-        ArrayList<Pair> toAdd=new ArrayList<>();
-            for (Map.Entry<Vector2d, Object> entry : rectMap.entrySet())
-            {
-                if(i==directions.length) break;
-                Object o = entry.getValue();
-                if (o instanceof Animal) {
-                    Animal a = (Animal) o;
-                    toDelete.add(a.getPosition());
-                    a.move(directions[i++]);
-                    toAdd.add(new Pair(a.getPosition(),a));
-                }
-            }
-            toDelete.stream().forEach(el->rectMap.remove(el));
-            toAdd.stream().forEach(p->rectMap.put(p.vector,p.animal));
-            for (Pair p:toAdd)
-            {
-                rectMap.put(p.vector,p.animal);
-            }*/
         if (rectMap.isEmpty() && directions.length == 0) return;
-
         int numberOfAnimalsOnMap = listOfAnimals.size();
         for (int i = 0; i < directions.length; i++) {
             Animal currentAnimal = listOfAnimals.get(i % numberOfAnimalsOnMap);
