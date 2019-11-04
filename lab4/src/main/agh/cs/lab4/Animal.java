@@ -44,20 +44,29 @@ public class Animal {
         return position.toString();
     }
 
-    public void move(MoveDirection direction) {
+    public boolean move(MoveDirection direction) {
         if (direction == MoveDirection.RIGHT) {
             this.orientation = this.orientation.next();
+            return true;
         } else if (direction == MoveDirection.LEFT) {
             this.orientation = this.orientation.previous();
+            return true;
         } else if (direction == MoveDirection.FORWARD) {
             Vector2d potentialPos = this.position.add(this.orientation.toUnitVector());
-            if (map.canMoveTo(potentialPos))
+            if (map.canMoveTo(potentialPos)) {
                 this.position = potentialPos;
+                return true;
+            }
+
         } else if (direction == MoveDirection.BACKWARD) {
             Vector2d potentialPos = this.orientation.toUnitVector().opposite().add(this.position);
-            if (map.canMoveTo(potentialPos))
+            if (map.canMoveTo(potentialPos)) {
                 this.position = potentialPos;
+                return true;
+            }
+
         }
+        return false;
 
 
     }

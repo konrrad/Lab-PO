@@ -89,11 +89,13 @@ public class RectangularMap implements IWorldMap {
         int numberOfAnimalsOnMap = listOfAnimals.size();
         for (int i = 0; i < directions.length; i++) {
             Animal currentAnimal = listOfAnimals.get(i % numberOfAnimalsOnMap);
-            Vector2d currentPosition = (Vector2d) rectMap.get(currentAnimal.getPosition());
-            currentAnimal.move(directions[i]);
-            Vector2d newPosition = currentAnimal.getPosition();
-            rectMap.remove(currentPosition);
-            rectMap.put(newPosition, currentAnimal);
+            Vector2d currentPosition = currentAnimal.getPosition();
+            if (currentAnimal.move(directions[i])) {
+                Vector2d newPosition = currentAnimal.getPosition();
+                rectMap.remove(currentPosition);
+                rectMap.put(newPosition, currentAnimal);
+            }
+
         }
     }
 
@@ -117,6 +119,12 @@ public class RectangularMap implements IWorldMap {
                 && candidate.follows(low))
             return true;
         return false;
+    }
+
+    @Override
+    public String toString() {
+        MapVisualizer mapVisualizer = new MapVisualizer(this);
+        return mapVisualizer.draw(new Vector2d(0, 0), new Vector2d(width - 1, height - 1));
     }
 
 }
