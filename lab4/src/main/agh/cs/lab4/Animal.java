@@ -41,7 +41,7 @@ public class Animal {
     @Override
     public String toString() {
 
-        return position.toString();
+        return orientation.toString();
     }
 
     public boolean move(MoveDirection direction) {

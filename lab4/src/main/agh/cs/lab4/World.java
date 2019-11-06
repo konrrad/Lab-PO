@@ -8,8 +8,10 @@ public class World {
         MoveDirection[] directions = new OptionsParser().parse(args);
         IWorldMap map = new RectangularMap(10, 5);
         map.place(new Animal(map));
-        map.place(new Animal(map, new Vector2d(3, 4)));
+        Animal a1 = new Animal(map, new Vector2d(3, 4));
+        map.place(a1);
         map.run(directions);
+        System.out.println(a1);
         System.out.println(map);
 
     }
