@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 public class OptionsParser {
     public static MoveDirection[] parse(String[] args) throws IllegalArgumentException {
-        //if(args.length==0)  return null;
         MoveDirection[] directions = new MoveDirection[args.length];
-        int i = 0;
-        for (String s : args) {
-            //System.out.println(s);
+        //int i = 0;
+        for (int i=0;i<args.length;i++) {
+            String s=args[i];
             if (s.equals("f") || s.equals("forward")) {
                 directions[i++] = MoveDirection.FORWARD;
             } else if (s.equals("b") || s.equals("backward")) {
@@ -23,7 +22,7 @@ public class OptionsParser {
             }
 
         }
-        return Arrays.copyOfRange(directions, 0, i);
+        return directions;
     }
 }
 

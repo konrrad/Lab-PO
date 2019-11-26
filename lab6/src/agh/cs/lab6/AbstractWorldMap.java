@@ -46,14 +46,12 @@ public abstract class AbstractWorldMap implements IWorldMap {
         //if that position is free
         Vector2d position=mapElement.getPosition();
         if (canMoveTo(position)) {
-
             rectMap.put(position, mapElement);
             if(mapElement instanceof Animal)
                 listOfAnimals.add((Animal) mapElement);
             return true;
         }
-        //position is occupied
-        throw new IllegalArgumentException("Error: Field "+position.toString()+" is occupied.");
+        throw new IllegalArgumentException("Couldn't add on "+position.toString());
     }
 
     @Override
